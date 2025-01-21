@@ -15,7 +15,8 @@
   background-color: #d7d9dc;
 }
 .book-list li:hover {
-  background-color: #0056b3;
+  background-color: #1b5696;
+  cursor: pointer;
 }
 .book-info {
   display: flex;
@@ -27,4 +28,8 @@
   margin-left: auto;
   text-align: center;
   align-items: center;
+  transition: all .3s;
+}
+.icon:hover{
+  color: red;
 }
