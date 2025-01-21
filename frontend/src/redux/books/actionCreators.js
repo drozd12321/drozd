@@ -11,3 +11,9 @@ export const Delete_Book = (id) => {
     payload: id,
   };
 };
+export const Favorite_Book = (id) =>{
+  return{
+    type: action.FAVORITES_BOOk,
+    payload: id
+  }
+}

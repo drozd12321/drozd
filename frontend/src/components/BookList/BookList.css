@@ -29,7 +29,22 @@
   text-align: center;
   align-items: center;
   transition: all .3s;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
 }
-.icon:hover{
+.icon svg:last-child:hover{
   color: red;
+  cursor: pointer;
+}
+.icon svg:first-child:hover{
+  color: #fca510;
+  cursor: pointer;
+}
+.favorite{
+  color: #fca510;
+  cursor: pointer;
+}
+.icon svg{
+  height: 30px;
 }
