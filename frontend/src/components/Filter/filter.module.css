@@ -1,12 +1,28 @@
 .filter-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.filter-group{
-    align-items: center;
-    text-align: center;
+.filterGroup {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.inp{
-    margin: 10px;
+.inp {
+  margin: 10px;
+  padding: 5px;
+}
+.btn {
+  background-color: #fca510;
+  border-radius: 5px;
+  border: none;
+  padding: 7px;
+  margin-left: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.btn:hover {
+  background-color: #7e5206;
 }
