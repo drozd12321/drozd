@@ -14,7 +14,6 @@ const BookList = () => {
   };
   const handleFavorite = (id) => {
     dispatch(Favorite_Book(id))
-    console.log('ds')
   }
   return (
     <div className="app-block book-list">
