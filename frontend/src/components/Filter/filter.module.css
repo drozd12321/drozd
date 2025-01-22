@@ -3,3 +3,10 @@
     justify-content: space-between;
     align-items: center;
 }
+.filter-group{
+    align-items: center;
+    text-align: center;
+}
+.inp{
+    margin: 10px;
+}
