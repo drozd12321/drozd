@@ -15,4 +15,5 @@ const sliceFilter = createSlice({
     }
 })
 export const {setTitleFilter} = sliceFilter.actions;
+export const selectFilterTitle = (state)=>state.filter.title;
 export default sliceFilter.reducer
