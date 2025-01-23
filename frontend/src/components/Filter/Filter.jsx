@@ -5,8 +5,11 @@ import {
   setResetFilters,
   selectFilterAuthor,
   setAuthorFilter,
+  setFavorites,
+  selectFavorites
 } from '../../redux/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { BsBookmarkStar,BsBookmarkStarFill } from 'react-icons/bs';
 import styles from './filter.module.css';
 const Filter = () => {
   const dispath = useDispatch();
@@ -18,10 +21,13 @@ const Filter = () => {
   };
   const stateTitle = useSelector(selectFilterTitle);
   const stateAuthor = useSelector(selectFilterAuthor);
-  console.log(stateAuthor);
+  const stateFavorites = useSelector(selectFavorites);
   const FilterReset = () => {
     dispath(setResetFilters());
   };
+  const handleBookFavorites = () => {
+    dispath(setFavorites());
+  }
   return (
     <div className="app-block">
       <div className={styles.filterGroup}>
@@ -39,6 +45,7 @@ const Filter = () => {
           value={stateAuthor}
           onChange={handleFilterAuthor}
         />
+        <BsBookmarkStar className={styles.icon} onClick={handleBookFavorites}/>
         <button className={styles.btn} onClick={FilterReset}>
           Reset Filters
         </button>

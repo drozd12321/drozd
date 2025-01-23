@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Delete_Book, Favorite_Book } from '../../redux/books/actionCreators';
-import { BsBookmarkStar } from 'react-icons/bs';
-import { BsBookmarkStarFill } from 'react-icons/bs';
+import { BsBookmarkStar,BsBookmarkStarFill } from 'react-icons/bs';
 import { selectFilterTitle,selectFilterAuthor } from '../../redux/filter/filterSlice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../App.css';

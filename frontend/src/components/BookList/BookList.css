@@ -21,8 +21,8 @@
 .book-info {
   display: flex;
   align-items: center;
-  text-align: center;
   padding: 5px;
+  align-self: flex-start;
 }
 .icon {
   margin-left: auto;
