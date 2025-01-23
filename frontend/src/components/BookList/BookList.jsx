@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Delete_Book, Favorite_Book } from '../../redux/books/actionCreators';
 import { BsBookmarkStar,BsBookmarkStarFill } from 'react-icons/bs';
-import { selectFilterTitle,selectFilterAuthor } from '../../redux/filter/filterSlice';
+import { selectFilterTitle,selectFilterAuthor,selectFavorites } from '../../redux/filter/filterSlice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../App.css';
 import './BookList.css';
@@ -10,6 +10,7 @@ const BookList = () => {
   const books = useSelector((state) => state.books);
   const filterTitle = useSelector(selectFilterTitle);
   const filterAuthor = useSelector(selectFilterAuthor);
+  const favoritesBook = useSelector(selectFavorites);
   const dispatch = useDispatch();
   const handleDelete = (id) => {
     dispatch(Delete_Book(id));
@@ -24,7 +25,8 @@ const BookList = () => {
     const matchAuthor = book.author
     .toLowerCase()
     .includes(filterAuthor.toLowerCase());
-    return mathTitle && matchAuthor;
+    const mathFavorite = favoritesBook ? book.isFavorite : true;
+    return mathTitle && matchAuthor && mathFavorite;
   });
   return (
     <div className="app-block book-list">

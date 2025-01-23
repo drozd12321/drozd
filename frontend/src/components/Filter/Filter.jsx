@@ -45,7 +45,8 @@ const Filter = () => {
           value={stateAuthor}
           onChange={handleFilterAuthor}
         />
-        <BsBookmarkStar className={styles.icon} onClick={handleBookFavorites}/>
+        {stateFavorites ? (<BsBookmarkStarFill className={`
+          ${styles.icon} ${styles.favor}`} onClick={handleBookFavorites}/>) : <BsBookmarkStar className={styles.icon} onClick={handleBookFavorites}/>}
         <button className={styles.btn} onClick={FilterReset}>
           Reset Filters
         </button>
