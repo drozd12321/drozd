@@ -48,3 +48,7 @@
 .icon svg{
   height: 30px;
 }
+.book-list .highLight{
+background-color: #f5b13b;
+display: inline-block;
+}
