@@ -22,4 +22,4 @@ const sliceBook = createSlice({
 });
 export default sliceBook.reducer;
 export const { setAddBook, setDeleteBook, setFavoriteBook } = sliceBook.actions;
-export const selectBook = (state) => state.bookFilter;
+export const selectBook = (state) => state.books;

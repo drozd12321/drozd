@@ -6,12 +6,13 @@ import {
   selectFilterAuthor,
   selectFavorites,
 } from "../../redux/filter/filterSlice";
+import { selectBook } from "../../redux/books/bookSlice";
 import { setDeleteBook, setFavoriteBook } from "../../redux/books/bookSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "../../App.css";
 import "./BookList.css";
 const BookList = () => {
-  const books = useSelector((state) => state.books);
+  const books = useSelector(selectBook);
   const filterTitle = useSelector(selectFilterTitle);
   const filterAuthor = useSelector(selectFilterAuthor);
   const favoritesBook = useSelector(selectFavorites);
