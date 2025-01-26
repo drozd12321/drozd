@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setAddBook } from "../../redux/books/bookSlice.js";
-import axios from "axios";
+import { setAddBook, fethData } from "../../redux/books/bookSlice.js";
 import booksDate from "../../date/books.json";
 import createBook from "../../utils/createBook.js";
 import "../../App.css";
@@ -24,15 +23,8 @@ const BookForm = () => {
     const randomBook = booksDate[randomIndex];
     dispatch(setAddBook(createBook(randomBook)));
   }
-  async function handlAddRandomBookAPI() {
-    try {
-      const res = (await axios.get("http://localhost:4000/randomBook")).data;
-      if (res?.title && res?.author) {
-        dispatch(setAddBook(createBook(res)));
-      }
-    } catch (error) {
-      alert("Error");
-    }
+  function handlAddRandomBookAPI() {
+    dispatch(fethData());
   }
   return (
     <div className="app-block book-form">
