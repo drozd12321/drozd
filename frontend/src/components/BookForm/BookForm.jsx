@@ -1,27 +1,27 @@
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Add_Book } from '../../redux/books/actionCreators';
-import booksDate from '../../date/books.json'
-import createBook from '../../utils/createBook.js';
-import '../../App.css';
-import './BookForm.css';
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setAddBook } from "../../redux/books/bookSlice.js";
+import booksDate from "../../date/books.json";
+import createBook from "../../utils/createBook.js";
+import "../../App.css";
+import "./BookForm.css";
 const BookForm = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthors] = useState('');
+  const [title, setTitle] = useState("");
+  const [author, setAuthors] = useState("");
   const dispatch = useDispatch();
   function handleSubmit(event) {
     event.preventDefault();
     if (title && author) {
-      dispatch(Add_Book(createBook({title:title,author:author})));
-      setTitle('');
-      setAuthors('');
+      dispatch(setAddBook(createBook({ title: title, author: author })));
+      setTitle("");
+      setAuthors("");
     }
   }
-  function handleAddRandomBook(){
-    const randomIndex = Math.floor(Math.random()*booksDate.length)
-    const randomBook = booksDate[randomIndex]
-    dispatch(Add_Book(createBook(randomBook)))
+  function handleAddRandomBook() {
+    const randomIndex = Math.floor(Math.random() * booksDate.length);
+    const randomBook = booksDate[randomIndex];
+    dispatch(setAddBook(createBook(randomBook)));
   }
   return (
     <div className="app-block book-form">
@@ -48,7 +48,9 @@ const BookForm = () => {
           />
         </div>
         <button type="submit">Add Book</button>
-        <button type='button' onClick={handleAddRandomBook}>Add Random</button>
+        <button type="button" onClick={handleAddRandomBook}>
+          Add Random
+        </button>
       </form>
     </div>
   );
