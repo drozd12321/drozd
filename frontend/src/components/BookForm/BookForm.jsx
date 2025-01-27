@@ -11,7 +11,7 @@ import "./BookForm.css";
 const BookForm = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthors] = useState("");
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,9 +19,8 @@ const BookForm = () => {
       dispatch(setAddBook(createBook({ title: title, author: author })));
       setTitle("");
       setAuthors("");
-    }
-    else{
-      dispatch(setError('Заполните все необходимые поля'));
+    } else {
+      dispatch(setError("Заполните все необходимые поля"));
     }
   }
   function handleAddRandomBook() {
@@ -29,14 +28,14 @@ const BookForm = () => {
     const randomBook = booksDate[randomIndex];
     dispatch(setAddBook(createBook(randomBook)));
   }
-  const handlAddRandomBookAPI = async() =>{
+  const handlAddRandomBookAPI = async () => {
     try {
       setLoading(true);
       await dispatch(fethData("http://localhost:4000/randomBookDel"));
     } finally {
       setLoading(false);
     }
-  }
+  };
   return (
     <div className="app-block book-form">
       <h1>Add a New Book</h1>
@@ -65,16 +64,19 @@ const BookForm = () => {
         <button type="button" onClick={handleAddRandomBook}>
           Add Random
         </button>
-        <button type="button" onClick={handlAddRandomBookAPI}
-        disabled={loading}>
+        <button
+          type="button"
+          onClick={handlAddRandomBookAPI}
+          disabled={loading}
+        >
           {loading ? (
             <>
-            <span>
-              Loading Book ...
-            </span>
-            <FaSpinner className="spiner rotate" />
-          </>) : 'Add Book API'
-            }
+              <span>Loading Book ...</span>
+              <FaSpinner className="spiner rotate" />
+            </>
+          ) : (
+            "Add Book API"
+          )}
         </button>
       </form>
     </div>

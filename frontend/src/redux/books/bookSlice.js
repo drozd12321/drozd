@@ -3,15 +3,18 @@ import axios from "axios";
 import createBook from "../../utils/createBook";
 import { setError } from "../filter/errorSlice";
 const initialState = [];
-export const fethData = createAsyncThunk("books/fetchData", async (url,thunkAPI) => {
-  try {
-    const res = await axios.get(url);
-    return res.data;
-  } catch (error) {
-    thunkAPI.dispatch(setError(error.message));
-    throw error;
+export const fethData = createAsyncThunk(
+  "books/fetchData",
+  async (url, thunkAPI) => {
+    try {
+      const res = await axios.get(url);
+      return res.data;
+    } catch (error) {
+      thunkAPI.dispatch(setError(error.message));
+      throw error;
+    }
   }
-});
+);
 const sliceBook = createSlice({
   name: "bookFilter",
   initialState,
@@ -35,10 +38,8 @@ const sliceBook = createSlice({
       if (action.payload.title && action.payload.author) {
         state.push(createBook(action.payload));
       }
-    }
-  );
+    });
   },
-
 });
 export default sliceBook.reducer;
 export const { setAddBook, setDeleteBook, setFavoriteBook } = sliceBook.actions;
