@@ -28,7 +28,7 @@ const BookForm = () => {
     dispatch(setAddBook(createBook(randomBook)));
   }
   function handlAddRandomBookAPI() {
-    dispatch(fethData("http://localhost:400/randomBook"));
+    dispatch(fethData("http://localhost:4000/randomBook"));
   }
   return (
     <div className="app-block book-form">
