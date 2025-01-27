@@ -4,7 +4,6 @@ import createBook from "../../utils/createBook";
 const initialState = [];
 export const fethData = createAsyncThunk("books/fetchData", async () => {
   const res = await axios.get("http://localhost:4000/randomBook");
-  console.log(res.data);
   return res.data;
 });
 const sliceBook = createSlice({
