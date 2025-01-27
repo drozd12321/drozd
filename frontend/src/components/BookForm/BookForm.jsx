@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAddBook, fethData } from "../../redux/books/bookSlice.js";
+import { setError } from "../../redux/filter/errorSlice.js";
 import booksDate from "../../date/books.json";
 import createBook from "../../utils/createBook.js";
 import "../../App.css";
@@ -17,6 +18,9 @@ const BookForm = () => {
       setTitle("");
       setAuthors("");
     }
+    else{
+      dispatch(setError('Заполните все необходимые поля'));
+    }
   }
   function handleAddRandomBook() {
     const randomIndex = Math.floor(Math.random() * booksDate.length);
@@ -24,7 +28,7 @@ const BookForm = () => {
     dispatch(setAddBook(createBook(randomBook)));
   }
   function handlAddRandomBookAPI() {
-    dispatch(fethData());
+    dispatch(fethData("http://localhost:400/randomBook"));
   }
   return (
     <div className="app-block book-form">

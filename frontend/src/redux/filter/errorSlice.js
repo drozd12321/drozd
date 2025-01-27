@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fethData } from "../books/bookSlice";
 const initialState = '';
 const errorSlice = createSlice({
     name:'error',
@@ -10,7 +11,7 @@ const errorSlice = createSlice({
         setClearError(){
             return initialState;
         }
-    }
+    },
 })
 
 export const {setError,setClearError} = errorSlice.actions;
