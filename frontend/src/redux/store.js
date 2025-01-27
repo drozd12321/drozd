@@ -6,7 +6,7 @@ const store = configureStore({
   reducer: {
     books: sliceBook,
     filter: sliceFilter,
-    error: errorSlice
+    error: errorSlice,
   },
 });
 
