@@ -28,19 +28,22 @@ input{
     color: rgb(225, 238, 225);
     margin: 5px;
 }
-.book-form button:hover{
+.book-form button:hover {
     background-color: #0056b3;
     border: none;
 }
+.book-form button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
 .spiner{
     font-size: 2em;
     margin-left: 10px;
 }
 .rotate{
     animation: rotate 2s linear infinite;
-}
-button:disabled {
-    background-color: #1e2933;
 }
 @keyframes rotate{
     from {
