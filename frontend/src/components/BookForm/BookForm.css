@@ -32,3 +32,21 @@ input{
     background-color: #0056b3;
     border: none;
 }
+.spiner{
+    font-size: 2em;
+    margin-left: 10px;
+}
+.rotate{
+    animation: rotate 2s linear infinite;
+}
+button:disabled {
+    background-color: #1e2933;
+}
+@keyframes rotate{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
