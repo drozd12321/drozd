@@ -29,12 +29,13 @@ const sliceBook = createSlice({
       return {...state, books: state.books.filter((book) => book.id !== action.payload)}
     },
     setFavoriteBook(state, action) {
-      return state.books.map((book) =>
+        state.books = state.books.map((book) =>
         book.id === action.payload
           ? { ...book, isFavorite: !book.isFavorite }
           : book
       );
     },
+    
   },
   extraReducers: (builder) => {
     builder.addCase(fethData.pending, (state) => {

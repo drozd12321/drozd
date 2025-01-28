@@ -13,6 +13,7 @@ import "../../App.css";
 import "./BookList.css";
 const BookList = () => {
   const books = useSelector(selectBook);
+  console.log(books)
   const filterTitle = useSelector(selectFilterTitle);
   const filterAuthor = useSelector(selectFilterAuthor);
   const favoritesBook = useSelector(selectFavorites);
@@ -23,7 +24,7 @@ const BookList = () => {
   const handleFavorite = (id) => {
     dispatch(setFavoriteBook(id));
   };
-  const filteredBooks = books.filter((book) => {
+  const filteredBooks = books ? books.filter((book) => {
     const mathTitle = book.title
       .toLowerCase()
       .includes(filterTitle.toLowerCase());
@@ -32,7 +33,7 @@ const BookList = () => {
       .includes(filterAuthor.toLowerCase());
     const mathFavorite = favoritesBook ? book.isFavorite : true;
     return mathTitle && matchAuthor && mathFavorite;
-  });
+  }) : [];
   const highLightMatch = (text, filter) => {
     if (!filter) return text;
     const regex = new RegExp(`(${filter})`, "gi");
