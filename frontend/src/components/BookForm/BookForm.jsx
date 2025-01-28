@@ -13,6 +13,7 @@ const BookForm = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthors] = useState("");
   const loadingAPI = useSelector(selectLoadingAPI);
+  console.log(loadingAPI)
   const dispatch = useDispatch();
   function handleSubmit(event) {
     event.preventDefault();

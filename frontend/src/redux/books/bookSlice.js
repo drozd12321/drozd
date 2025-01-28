@@ -14,7 +14,7 @@ export const fethData = createAsyncThunk(
       return res.data;
     } catch (error) {
       thunkAPI.dispatch(setError(error.message));
-      throw error;
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -36,22 +36,24 @@ const sliceBook = createSlice({
       );
     },
   },
-  extraReducers: {
-    [fethData.pending]: (state)=>{
+  extraReducers: (builder) => {
+    builder.addCase(fethData.pending, (state) => {
       state.isLoadingAPI = true;
-    },
-    [fethData.fulfilled]: (state,action)=>{
-      if(action.payload.title && action.payload.author){
-        state.books.push(createBook(action.payload))
+    })
+    .addCase(fethData.fulfilled, (state,action) => {
+      state.isLoadingAPI = false;
+      if(action.payload.title  &&  action.payload.author){
+        state.books.push(createBook(action.payload));
       }
-    },
-    [fethData.rejected]: (state)=>{
-      state.isLoadingAPI=false;
-    }
-  }
+    }) 
+    .addCase(fethData.rejected, (state) => {
+      state.isLoadingAPI = false;
+    })
+  },
+
 });
 export default sliceBook.reducer;
 export const { setAddBook, setDeleteBook, setFavoriteBook } = sliceBook.actions;
 export const selectBook = (state) => state.books.books;
-export const selectLoadingAPI = (state) => state.isLoadingAPI;
+export const selectLoadingAPI = (state) => state.books.isLoadingAPI;
  
