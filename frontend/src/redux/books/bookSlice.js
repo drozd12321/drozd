@@ -2,7 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import createBook from "../../utils/createBook";
 import { setError } from "../filter/errorSlice";
-const initialState = [];
+const initialState = {
+  books:[],
+  isLoadingAPI: false
+};
 export const fethData = createAsyncThunk(
   "books/fetchData",
   async (url, thunkAPI) => {
@@ -20,27 +23,35 @@ const sliceBook = createSlice({
   initialState,
   reducers: {
     setAddBook(state, action) {
-      state.push(action.payload);
+      state.books.push(action.payload);
     },
     setDeleteBook(state, action) {
-      return state.filter((book) => book.id !== action.payload);
+      return {...state, books: state.books.filter((book) => book.id !== action.payload)}
     },
     setFavoriteBook(state, action) {
-      return state.map((book) =>
+      return state.books.map((book) =>
         book.id === action.payload
           ? { ...book, isFavorite: !book.isFavorite }
           : book
       );
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(fethData.fulfilled, (state, action) => {
-      if (action.payload.title && action.payload.author) {
-        state.push(createBook(action.payload));
+  extraReducers: {
+    [fethData.pending]: (state)=>{
+      state.isLoadingAPI = true;
+    },
+    [fethData.fulfilled]: (state,action)=>{
+      if(action.payload.title && action.payload.author){
+        state.books.push(createBook(action.payload))
       }
-    });
-  },
+    },
+    [fethData.rejected]: (state)=>{
+      state.isLoadingAPI=false;
+    }
+  }
 });
 export default sliceBook.reducer;
 export const { setAddBook, setDeleteBook, setFavoriteBook } = sliceBook.actions;
-export const selectBook = (state) => state.books;
+export const selectBook = (state) => state.books.books;
+export const selectLoadingAPI = (state) => state.isLoadingAPI;
+ 
